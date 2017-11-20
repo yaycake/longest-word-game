@@ -1,0 +1,32 @@
+
+<h1>Submit the longest word you can find using the following letters:</h1>
+<h1 id="grid"><%= @grid %></h1>
+<form action="/score" method= "post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <input type="hidden" name="grid" value="<%= @grid %>">
+  <input id="time" type="hidden" name="time_elapsed">
+  <input type="text" name="guess" placeholder="What's Your Guess?">
+  <input id="submit" type="submit" value="Submit Your Answer!">
+</form>
+
+<script>
+  console.log("start")
+  let start_time;
+  const begin = document.getElementById('grid');
+  console.log(begin)
+  document.addEventListener("DOMContentLoaded", (event) => {
+    console.log("loaded")
+    start_time = Date.now()
+    console.log(start_time)
+  })
+
+  const end = document.getElementById('submit')
+
+  end.addEventListener("click", (event) => {
+    console.log("clicked")
+    const end_time = Date.now();
+    const time_elapsed = document.getElementById('time');
+    time_elapsed.value = end_time-start_time;
+    console.log(time_elapsed)
+  })
+</script>
